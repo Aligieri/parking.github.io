@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Parking </title>
+    <title>Parking Frankfurt</title>
     <style>
       #map {
         height: 400px;
@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" />
   </head>
   <body>
+    <header>
+      <h1>Automatisches Parksystem</h1>
+    </header>
     <div id="map"></div>
     <script>
       var map = L.map('map').setView([50.12018107172269, 8.638312097282194], 13);
@@ -21,8 +24,41 @@
         maxZoom: 18,
       }).addTo(map);
       L.marker([50.12018107172269, 8.638312097282194]).addTo(map)
-        .bindPopup("Parking paid!")
+        .bindPopup("Parkplatz")
         .openPopup();
     </script>
+    <header>
+         <h1>Auto Informationen</h1>
+    </header>
+    <table>
+      <tr>
+        <th></th>
+        <th>Info</th>
+      </tr>
+      <tr>
+        <td>Marke</td>
+        <td>Honda Civic</td>
+      </tr>
+      <tr>
+        <td>Autokennzeichen</td>
+        <td>F-IX ***</td>
+      </tr>
+      <tr>
+        <td>Bezahlt bis</td>
+        <td id="formattedDate" ></td>
+      </tr>
+      <script>
+          const tomorrow = new Date();
+          tomorrow.setDate(tomorrow.getDate() + 1);
+
+          const year = tomorrow.getFullYear();
+          const month = tomorrow.getMonth() + 1;
+          const day = tomorrow.getDate();
+
+          const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day} : 15:43`;
+
+          document.getElementById('formattedDate').innerHTML = formattedDate;
+    </script>
+    </table>
   </body>
 </html>
